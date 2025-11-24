@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaSphere | Modern Landing Page</title>
+
+  <!-- Google Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* ---------- Base Styles ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #050816;
+      --bg-soft: #0b1020;
+      --card: #101526;
+      --accent: #6366f1;
+      --accent-soft: rgba(99, 102, 241, 0.15);
+      --accent-2: #22d3ee;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.25);
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.7);
+      --radius-xl: 22px;
+      --radius-full: 999px;
+      --transition-fast: 0.2s ease;
+      --transition: 0.3s ease;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: radial-gradient(circle at top left, #1d2338 0, #050816 45%, #020617 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ---------- Layout Containers ---------- */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ---------- Glass Blur Background Orbs ---------- */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.7;
+      z-index: -1;
+    }
+
+    .orb.orb-1 {
+      width: 280px;
+      height: 280px;
+      background: #4f46e5;
+      top: -80px;
+      left: -60px;
+    }
+
+    .orb.orb-2 {
+      width: 260px;
+      height: 260px;
+      background: #0ea5e9;
+      bottom: -80px;
+      right: -40px;
+    }
+
+    /* ---------- Navbar ---------- */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.9), transparent);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    .navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 14px;
+      background: radial-gradient(circle at 20% 0, #ffffff 0, #4f46e5 35%, #020617 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.9);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .brand-text span:first-child {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      font-size: 1rem;
+    }
+
+    .brand-text span:last-child {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      position: relative;
+      padding-bottom: 0.15rem;
+    }
+
+    .nav-links a:hover {
+      color: #e5e7eb;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent), var(--accent-2));
+      border-radius: 999px;
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover::after {
+      width: 50%;
+    }
+
+    .nav-cta {
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      font-size: 0.85rem;
+      background: radial-gradient(circle at top left, rgba(148, 163, 184, 0.3), rgba(15, 23, 42, 0.9));
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .nav-cta span {
+      font-size: 1.05rem;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 35px rgba(15, 23, 42, 0.9);
+      border-color: var(--accent-2);
+      background: radial-gradient(circle at top left, rgba(148, 163, 184, 0.5), rgba(15, 23, 42, 0.95));
+    }
+
+    /* ---------- Hero Section ---------- */
+    .hero {
+      padding: 3.5rem 0 3.5rem;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.55rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: linear-gradient(to right, rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.95));
+      font-size: 0.75rem;
+      color: var(--accent-2);
+      gap: 0.4rem;
+      margin-bottom: 0.9rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-kicker-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: radial-gradient(circle, #22c55e, #16a34a);
+      box-shadow: 0 0 14px rgba(34, 197, 94, 0.9);
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 3vw + 1.4rem, 3.4rem);
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-title span {
+      background: linear-gradient(to right, var(--accent), var(--accent-2));
+      -webkitbackground-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      max-width: 31rem;
+      color: var(--text-muted);
+      margin-bottom: 1.7rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .badge {
+      padding: 0.35rem 0.8rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(circle at top left, rgba(148, 163, 184, 0.35), rgba(15, 23, 42, 0.9));
+      color: #e5e7eb;
+    }
+
+    .badge-soft {
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--text-muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      align-items: center;
+      margin-bottom: 2.2rem;
+    }
+
+    .btn-primary {
+      padding: 0.75rem 1.7rem;
+      border-radius: var(--radius-full);
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white;
+      font-weight: 500;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 16px 40px rgba(37, 99, 235, 0.6);
+      display: inline-flex;
+      gap: 0.6rem;
+      align-items: center;
+      transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px) scale(1.01);
+      filter: brightness(1.05);
+      box-shadow: 0 20px 55px rgba(37, 99, 235, 0.8);
+    }
+
+    .btn-ghost {
+      padding: 0.7rem 1.4rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: border-color var(--transition-fast), background var(--transition-fast),
+        color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent-2);
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.95);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost-circle {
+      width: 26px;
+      height: 26px;
+      border-radius: var(--radius-full);
+      border: 1px dashed rgba(148, 163, 184, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.7rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta-item strong {
+      display: block;
+      font-size: 1rem;
+      color: #e5e7eb;
+    }
+
+    /* ---------- Hero Visual Card ---------- */
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-card {
+      position: relative;
+      background: radial-gradient(circle at top left, rgba(99, 102, 241, 0.35), var(--card));
+      border-radius: var(--radius-xl);
+      padding: 1.7rem 1.6rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.3rem;
+    }
+
+    .hero-chip {
+      font-size: 0.72rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: var(--radius-full);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .hero-chip-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: var(--radius-full);
+      background: radial-gradient(circle, #4ade80, #22c55e);
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.9);
+    }
+
+    .hero-card-kpi {
+      text-align: right;
+      font-size: 0.85rem;
+    }
+
+    .hero-card-kpi span {
+      display: block;
+    }
+
+    .kpi-label {
+      color: var(--text-muted);
+      font-size: 0.73rem;
+    }
+
+    .kpi-value {
+      font-weight: 600;
+    }
+
+    .hero-graph {
+      margin-top: 0.7rem;
+      padding: 1.1rem 1rem;
+      border-radius: 18px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+    }
+
+    .hero-graph-bars {
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-end;
+      height: 120px;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-graph-bar {
+      flex: 1;
+      border-radius: 999px;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.5), var(--accent-soft));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-graph-bar-fill {
+      position: absolute;
+      inset-inline: 3px;
+      bottom: 3px;
+      border-radius: inherit;
+      background: linear-gradient(to top, var(--accent), var(--accent-2));
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.7);
+    }
+
+    .hero-graph-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .hero-floating-tag {
+      position: absolute;
+      bottom: -12px;
+      right: 8px;
+      padding: 0.55rem 0.75rem;
+      border-radius: 16px;
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.35), rgba(15, 23, 42, 0.98));
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #e5e7eb;
+    }
+
+    .hero-floating-tag span.icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(56, 189, 248, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    /* ---------- Section Wrapper ---------- */
+    .section {
+      padding: 2.5rem 0 0;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .section-title-block small {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent-2);
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+
+    .section-title-block h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .section-title-block p {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .section-pill {
+      font-size: 0.77rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: var(--radius-full);
+      border: 1px dashed rgba(148, 163, 184, 0.5);
+      color: var(--text-muted);
+    }
+
+    /* ---------- Features Grid ---------- */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.3rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .feature-card {
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.98));
+      border-radius: var(--radius-xl);
+      padding: 1.3rem 1.2rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.7);
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at top left, rgba(99, 102, 241, 0.18), transparent 55%);
+      opacity: 0;
+      transition: opacity var(--transition);
+      z-index: -1;
+    }
+
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.95);
+      border-color: rgba(129, 140, 248, 0.9);
+    }
+
+    .feature-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 14px;
+      background: radial-gradient(circle at 20% 0, #e5e7eb 0, #4f46e5 40%, #020617 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .feature-title {
+      font-size: 0.98rem;
+      margin-bottom: 0.3rem;
+      font-weight: 500;
+    }
+
+    .feature-body {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .feature-meta {
+      font-size: 0.75rem;
+      color: var(--accent-2);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* ---------- Highlight / Stats Row ---------- */
+    .highlight-row {
+      display: grid;
+      grid-template-columns: 2.1fr 1.4fr;
+      gap: 1.4rem;
+      margin-bottom: 2.7rem;
+    }
+
+    .highlight-card {
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.98));
+      border: 1px solid var(--border-subtle);
+      padding: 1.4rem 1.4rem;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+    }
+
+    .highlight-title {
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .highlight-sub {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      margin-bottom: 1.1rem;
+    }
+
+    .highlight-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+      font-size: 0.8rem;
+    }
+
+    .highlight-item {
+      display: flex;
+      gap: 0.45rem;
+      align-items: flex-start;
+    }
+
+    .highlight-bullet {
+      margin-top: 0.2rem;
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: radial-gradient(circle, var(--accent), var(--accent-2));
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.9);
+    }
+
+    .highlight-meta-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .highlight-meta-row strong {
+      display: block;
+      color: #e5e7eb;
+    }
+
+    .highlight-card-secondary {
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.25), rgba(15, 23, 42, 0.98));
+      border: 1px solid rgba(56, 189, 248, 0.6);
+      padding: 1.35rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 18px 45px rgba(8, 47, 73, 0.9);
+    }
+
+    .stat-badge {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(56, 189, 248, 0.7);
+      display: inline-flex;
+      gap: 0.4rem;
+      align-items: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .stat-main {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+    }
+
+    .stat-caption {
+      font-size: 0.8rem;
+      color: #e0f2fe;
+      margin-bottom: 1.1rem;
+    }
+
+    .stat-footer {
+      font-size: 0.75rem;
+      color: #bae6fd;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .stat-pill {
+      padding: 0.3rem 0.7rem;
+      border-radius: var(--radius-full);
+      border: 1px dashed rgba(56, 189, 248, 0.7);
+    }
+
+    /* ---------- Contact Section ---------- */
+    .contact {
+      padding: 2.2rem 0 2.7rem;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .contact-card {
+      border-radius: var(--radius-xl);
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.96));
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 1.6rem 1.5rem 1.4rem;
+      box-shadow: 0 18px 46px rgba(15, 23, 42, 0.95);
+    }
+
+    .contact-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .contact-card p {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      margin-bottom: 1.1rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .form-group {
+      margin-bottom: 0.85rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0.2rem;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border-radius: 11px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      padding: 0.55rem 0.7rem;
+      font-size: 0.8rem;
+      color: #e5e7eb;
+      outline: none;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast),
+        background var(--transition-fast);
+      resize: vertical;
+      min-height: 40px;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #6b7280;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--accent-2);
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.4);
+      background: rgba(15, 23, 42, 0.98);
+    }
+
+    .contact-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 0.7rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+
+    .contact-note {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .contact-note span.icon {
+      font-size: 1rem;
+    }
+
+    .contact-sidebar {
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top left, rgba(99, 102, 241, 0.25), rgba(15, 23, 42, 0.98));
+      border: 1px solid rgba(129, 140, 248, 0.7);
+      padding: 1.2rem 1.1rem;
+      font-size: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .contact-stat-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.6rem;
+    }
+
+    .contact-stat {
+      flex: 1;
+      border-radius: 15px;
+      padding: 0.55rem 0.6rem;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+    }
+
+    .contact-stat strong {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .contact-stat span {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .contact-pill {
+      padding: 0.3rem 0.7rem;
+      border-radius: var(--radius-full);
+      border: 1px dashed rgba(129, 140, 248, 0.8);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+    }
+
+    /* ---------- Footer ---------- */
+    .footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.3);
+      padding: 1.1rem 0 1.3rem;
+      margin-top: auto;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+    }
+
+    .footer-links a:hover {
+      color: #e5e7eb;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .highlight-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .contact-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .features-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .highlight-list {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        padding-top: 2.3rem;
+      }
+
+      .section {
+        padding-top: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 2.1rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-actions > * {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="page">
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="container navbar-inner">
+        <a href="#" class="brand">
+          <div class="brand-logo">N</div>
+          <div class="brand-text">
+            <span>NovaSphere</span>
+            <span>Static HTML Experience</span>
+          </div>
+        </a>
+
+        <nav class="nav-links">
+          <a href="#features">Features</a>
+          <a href="#why-us">Why Us</a>
+          <a href="#contact">Contact</a>
+          <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+            <span>✉</span> Say hello
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <main>
+      <section class="hero">
+        <div class="container hero-inner">
+          <div>
+            <div class="hero-kicker">
+              <div class="hero-kicker-dot"></div>
+              Live • Beautiful static UI
+            </div>
+
+            <h1 class="hero-title">
+              Build a <span>stunning website</span> with just one HTML file.
+            </h1>
+
+            <p class="hero-subtitle">
+              This is a fully responsive, modern landing page built using only HTML &amp; CSS.
+              No frameworks, no build tools — just copy, paste, and customize.
+            </p>
+
+            <div class="hero-badges">
+              <div class="badge">⚡ Fast &amp; Lightweight</div>
+              <div class="badge badge-soft">🎨 Gradient-rich design</div>
+              <div class="badge badge-soft">📱 Mobile-first layout</div>
+            </div>
+
+            <div class="hero-actions">
+              <button class="btn-primary" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">
+                Get started <span>↗</span>
+              </button>
+              <button class="btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                <span class="btn-ghost-circle">?</span>
+                Need customization
+              </button>
+            </div>
+
+            <div class="hero-meta">
+              <div class="hero-meta-item">
+                <strong>100% static</strong>
+                Works on any web server, GitHub Pages, Netlify, or local file.
+              </div>
+              <div class="hero-meta-item">
+                <strong>Fully editable</strong>
+                Change colors, text, or content easily without touching JavaScript.
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <article class="hero-card">
+              <div class="hero-card-header">
+                <div class="hero-chip">
+                  <span class="hero-chip-dot"></span>
+                  Live Preview · NovaUI
+                </div>
+                <div class="hero-card-kpi">
+                  <span class="kpi-label">Static load</span>
+                  <span class="kpi-value">0.2s</span>
+                </div>
+              </div>
+
+              <div class="hero-graph">
+                <div class="hero-graph-bars">
+                  <div class="hero-graph-bar">
+                    <div class="hero-graph-bar-fill" style="height: 40%;"></div>
+                  </div>
+                  <div class="hero-graph-bar">
+                    <div class="hero-graph-bar-fill" style="height: 65%;"></div>
+                  </div>
+                  <div class="hero-graph-bar">
+                    <div class="hero-graph-bar-fill" style="height: 85%;"></div>
+                  </div>
+                  <div class="hero-graph-bar">
+                    <div class="hero-graph-bar-fill" style="height: 55%;"></div>
+                  </div>
+                  <div class="hero-graph-bar">
+                    <div class="hero-graph-bar-fill" style="height: 95%;"></div>
+                  </div>
+                </div>
+                <div class="hero-graph-labels">
+                  <span>HTML</span>
+                  <span>CSS</span>
+                  <span>UX</span>
+                  <span>Perf</span>
+                  <span>Wow</span>
+                </div>
+              </div>
+
+              <div class="hero-floating-tag">
+                <span class="icon">✨</span>
+                <div>
+                  <strong>Drag &amp; Drop ready</strong>
+                  <div style="font-size: 0.7rem; color: #cbd5f5;">
+                    Move this into your project and style as you wish.
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section class="section" id="features">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-title-block">
+              <small>FEATURE SET</small>
+              <h2>Everything you need to start fast.</h2>
+              <p>
+                A simple structure divided into hero, features, highlight, and contact so you
+                can adapt it to a portfolio, product, or startup.
+              </p>
+            </div>
+            <div class="section-pill">No libraries • No bundlers • Just HTML</div>
+          </div>
+
+          <div class="features-grid">
+            <article class="feature-card">
+              <div class="feature-icon">📱</div>
+              <h3 class="feature-title">Responsive by default</h3>
+              <p class="feature-body">
+                Layouts adapt automatically for mobile, tablet, and desktop using CSS Grid
+                and Flexbox. No external CSS frameworks required.
+              </p>
+              <div class="feature-meta">
+                Viewports tuned
+                <span>·</span>
+                <span>≤ 480px, ≤ 900px, desktop</span>
+              </div>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon">🎚</div>
+              <h3 class="feature-title">Modern glassmorphism</h3>
+              <p class="feature-body">
+                Soft shadows, blurred backgrounds, and subtle gradients give your page a
+                premium, app-like feel while staying lightweight.
+              </p>
+              <div class="feature-meta">
+                Design tokens
+                <span>·</span>
+                <span>CSS variables for themes</span>
+              </div>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon">🧩</div>
+              <h3 class="feature-title">Component-like sections</h3>
+              <p class="feature-body">
+                Swap, duplicate, or remove blocks easily. Each section is clearly separated
+                and well named in the CSS.
+              </p>
+              <div class="feature-meta">
+                Edit friendly
+                <span>·</span>
+                <span>Great for beginners</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Us / Highlight -->
+      <section class="section" id="why-us">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-title-block">
+              <small>WHY NOVASPHERE</small>
+              <h2>Use this as your starter template.</h2>
+              <p>
+                Whether you're building a portfolio, a SaaS landing page, or a project demo,
+                this layout gives you a solid, beautiful baseline.
+              </p>
+            </div>
+            <div class="section-pill">Copy → Save → Customize</div>
+          </div>
+
+          <div class="highlight-row">
+            <div class="highlight-card">
+              <h3 class="highlight-title">Designed to be hacked and remixed.</h3>
+              <p class="highlight-sub">
+                All you need is a text editor. No installations, no dependencies. Change
+                colors, text, or layout in minutes.
+              </p>
+
+              <div class="highlight-list">
+                <div class="highlight-item">
+                  <div class="highlight-bullet"></div>
+                  <div>
+                    <strong>Single file simplicity</strong><br />
+                    Makes it easy to drop into any static hosting service.
+                  </div>
+                </div>
+                <div class="highlight-item">
+                  <div class="highlight-bullet"></div>
+                  <div>
+                    <strong>Clean, readable CSS</strong><br />
+                    Grouped by sections with clear comments and naming.
+                  </div>
+                </div>
+                <div class="highlight-item">
+                  <div class="highlight-bullet"></div>
+                  <div>
+                    <strong>Performance first</strong><br />
+                    No heavy assets or fonts — just one Google Font.
+                  </div>
+                </div>
+                <div class="highlight-item">
+                  <div class="highlight-bullet"></div>
+                  <div>
+                    <strong>Best-practice layout</strong><br />
+                    Header, main, sections, and footer with semantic markup.
+                  </div>
+                </div>
+              </div>
+
+              <div class="highlight-meta-row">
+                <div>
+                  <strong>Ready for GitHub Pages</strong>
+                  Drop this as <code>index.html</code> and you're live.
+                </div>
+                <div>
+                  <strong>Easy to extend</strong>
+                  Add more sections without breaking the design.
+                </div>
+              </div>
+            </div>
+
+            <aside class="highlight-card-secondary">
+              <div>
+                <div class="stat-badge">
+                  <span>⚙</span> Developer-friendly starter
+                </div>
+                <div class="stat-main">Static · Beautiful · Fast</div>
+                <p class="stat-caption">
+                  Think of this as a design booster for your next personal or client project.
+                  Small file, big visual impact.
+                </p>
+              </div>
+              <div class="stat-footer">
+                <div class="stat-pill">Replace text → Done</div>
+                <div>Ideal for portfolios · landing pages · mini projects</div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="contact" id="contact">
+        <div class="container contact-layout">
+          <div class="contact-card">
+            <h3>Let’s plug this into your project.</h3>
+            <p>
+              This form is just visual (no backend attached), but you can connect it to any
+              service like Formspree, Netlify Forms, or your own API.
+            </p>
+
+            <form onsubmit="event.preventDefault(); alert('This is a static demo form. Add your own backend to handle submissions.');">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">Your name</label>
+                  <input id="name" type="text" placeholder="Alex Dev" required />
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input id="email" type="email" placeholder="you@example.com" required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input id="subject" type="text" placeholder="Need help customizing the template" />
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea
+                  id="message"
+                  rows="4"
+                  placeholder="Tell me what kind of website you want to build..."
+                ></textarea>
+              </div>
+
+              <div class="contact-footer">
+                <button type="submit" class="btn-primary">
+                  Send message <span>➤</span>
+                </button>
+                <div class="contact-note">
+                  <span class="icon">💡</span>
+                  <span>
+                    Tip: Replace the <code>alert()</code> with your own form submission
+                    logic.
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <aside class="contact-sidebar">
+            <div>
+              <strong style="display: block; margin-bottom: 0.35rem;">Quick project facts</strong>
+              <p style="color: var(--text-muted); margin-bottom: 0.9rem;">
+                You can use this layout as:
+              </p>
+              <ul style="list-style: none; padding-left: 0; margin-bottom: 1rem;">
+                <li>• Developer portfolio</li>
+                <li>• Product / SaaS landing page</li>
+                <li>• Project README website</li>
+                <li>• Simple company homepage</li>
+              </ul>
+            </div>
+
+            <div class="contact-stat-row">
+              <div class="contact-stat">
+                <strong>1 file</strong>
+                <span>Everything bundled into a single <code>index.html</code>.</span>
+              </div>
+              <div class="contact-stat">
+                <strong>&lt; 50KB</strong>
+                <span>Super lightweight, even with all styling included.</span>
+              </div>
+            </div>
+
+            <div>
+              <div style="margin-bottom: 0.3rem; font-size: 0.78rem;">Helpful links to add:</div>
+              <div class="contact-links">
+                <div class="contact-pill">GitHub repo</div>
+                <div class="contact-pill">LinkedIn</div>
+                <div class="contact-pill">Portfolio</div>
+                <div class="contact-pill">Email</div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>© <span id="year"></span> NovaSphere. Built with pure HTML &amp; CSS.</div>
+        <div class="footer-links">
+          <a href="#features">Features</a>
+          <a href="#why-us">Template usage</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
